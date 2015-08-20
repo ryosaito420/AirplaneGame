@@ -1,21 +1,24 @@
 fileFormatVersion: 2
-guid: e91ec4673ff4b2f41b4317cea915e6a1
-timeCreated: 1439933992
+guid: 9f5d09b3b27e267428b8276b882fae2c
+timeCreated: 1440042031
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
     100000: //RootNode
-    100002: default
+    100002: arwing
+    100004: Camera
+    100006: Lamp
     400000: //RootNode
-    400002: default
-    2300000: default
-    3300000: default
-    4300000: default
-    6400000: default
+    400002: arwing
+    400004: Camera
+    400006: Lamp
+    2300000: arwing
+    3300000: arwing
+    4300000: arwing
   materials:
     importMaterials: 1
-    materialName: 1
+    materialName: 0
     materialSearch: 1
   animations:
     legacyGenerateAnimations: 4
@@ -38,7 +41,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 1
+    addColliders: 0
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
