@@ -6,13 +6,14 @@ public class rotateHandler : MonoBehaviour {
 	public float heldTimer = 0;
 	double ButtonCooler =0.5;
 	int ButtonCount = 0;
-	
+	bool rotating = false;
+	public Animation anim;
+
 	public void barrelRoll(){
 		if (Input.GetButtonDown( "Jump") ){
 			if (ButtonCooler > 0 && ButtonCount == 1/*Number of Taps you want Minus One*/) {
+				anim.Play("roll");
 
-				transform.RotateAround(transform.position, transform.up, Time.deltaTime * 90f);
-				Debug.Log("Barrel Roll");
 			} else {
 				ButtonCooler = 0.5; 
 				ButtonCount += 1;
@@ -26,6 +27,11 @@ public class rotateHandler : MonoBehaviour {
 			ButtonCount = 0 ;
 		}
 	}
+
+	void Start(){
+	    anim = GetComponent<Animation>();
+	}
+
 	// Update is called once per frame
 	void Update () {
 
@@ -36,31 +42,34 @@ public class rotateHandler : MonoBehaviour {
 		bool rotating = false;
 		barrelRoll ();
 
-		if (h > 0) {
-			if(rotating)
-				heldTimer = 0;
-			transform.Rotate (Vector3.left);
-			heldTimer++;
-			rotating = true;
-		} else if (h < 0) {
-			if(rotating)
-				heldTimer = 0;
-			transform.Rotate (Vector3.right);
-			heldTimer++;
-			rotating = true;
-		}
-		//normalize the rotation to 0 if no input is detected
-		else {
-			rotating = false;
-			Vector3 zero = new Vector3(0,0,0);
-			if( Vector3.Distance(transform.eulerAngles,zero ) > 0.01f ){
-				float angle = Mathf.MoveTowardsAngle(transform.eulerAngles.x, 0.0f, (15 + heldTimer)* Time.deltaTime);
-				transform.eulerAngles = new Vector3(angle, 0, 0);
+		if(!rotating){
+			if (h > 0) {
+				if(rotating)
+					heldTimer = 0;
+				transform.Rotate (Vector3.left);
+				heldTimer++;
+				rotating = true;
+			} else if (h < 0) {
+				if(rotating)
+					heldTimer = 0;
+				transform.Rotate (Vector3.right);
+				heldTimer++;
+				rotating = true;
 			}
+			//normalize the rotation to 0 if no input is detected
+			else {
 
-			else{
-				transform.eulerAngles = zero;
-				heldTimer = 0;
+				rotating = false;
+				Vector3 zero = new Vector3(0,0,0);
+				if( Vector3.Distance(transform.eulerAngles,zero ) > 0.01f ){
+					float angle = Mathf.MoveTowardsAngle(transform.eulerAngles.x, 0.0f, (15 + heldTimer)* Time.deltaTime);
+					transform.eulerAngles = new Vector3(angle, 0, 0);
+				}
+
+				else{
+					transform.eulerAngles = zero;
+					heldTimer = 0;
+				}
 			}
 
 			

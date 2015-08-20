@@ -16,6 +16,7 @@ ModelImporter:
     2300000: arwing
     3300000: arwing
     4300000: arwing
+    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
