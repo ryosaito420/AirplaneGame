@@ -11,16 +11,16 @@ public class planeController : MonoBehaviour {
 	private float verticalSpeed = 0; //Move plane up & down speed
 	private float horizontalSpeed = 0; // Move plane left & right speed
 	private Rigidbody rb;
-	private float zBound = 8f;
-	private float yBound = 3f;
+	private float zBound = 8f; //upperbound of plane
+	private float yBound = 3f; //Lowerbound of plane
 	// Use this for initialization
 	void Start(){
 		//rb = GetComponent<Rigidbody> ();
 	}
 	// Update is called once per frame
 	void FixedUpdate () { 
-		transform.Translate(Vector3.up * verticalSpeed * Time.deltaTime);
-		transform.Translate(Vector3.forward * horizontalSpeed * Time.deltaTime);
+		transform.Translate(Vector3.up * verticalSpeed * Time.deltaTime); //Move plane upwards
+		transform.Translate(Vector3.forward * horizontalSpeed * Time.deltaTime);//Move plane horizontally 
 	}
 
 	void HorizontalInputHandler(float a){
@@ -46,7 +46,7 @@ public class planeController : MonoBehaviour {
 
 	//For futureUse
 	void barrelRollHandler(){
-
+		//?????
 	}
 	
 	void Update (){

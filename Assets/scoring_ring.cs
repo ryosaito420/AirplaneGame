@@ -1,14 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GameHandler : MonoBehaviour {
-	
-	public int gameScore;
+public class scoring_ring : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
-		gameScore = 0;
 	
 	}
 	
@@ -16,4 +12,16 @@ public class GameHandler : MonoBehaviour {
 	void Update () {
 	
 	}
+
+	
+	void OnTriggerEnter(Collider other) {
+		Debug.Log ("+1");
+
+
+
+	}
+
+	
+
+
 }
