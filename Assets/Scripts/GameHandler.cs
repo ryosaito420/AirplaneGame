@@ -7,13 +7,13 @@ public class GameHandler : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
 		gameScore = 0;
-	
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+		Debug.Log (gameScore);
 	
 	}
 }
