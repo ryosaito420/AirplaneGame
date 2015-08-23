@@ -231,6 +231,38 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 92c18eb55f6780c478008512104597b4, type: 3}
   m_IsPrefabParent: 0
+--- !u!1 &796193333 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 164858, guid: 151cf2b12b6f6964e80f8b51df8c389a, type: 2}
+  m_PrefabInternal: {fileID: 1843534651}
+--- !u!114 &796193334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 796193333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23c05a88522aac34fbc2416d8938608d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1142368323}
+  speed: 10
+--- !u!54 &796193335
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 796193333}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &971435538
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,6 +366,18 @@ Prefab:
       propertyPath: ring
       value: 
       objectReference: {fileID: 1978511225}
+    - target: {fileID: 443514, guid: 1844b6388547cf04c9effec312ec48aa, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: .70710659
+      objectReference: {fileID: 0}
+    - target: {fileID: 443514, guid: 1844b6388547cf04c9effec312ec48aa, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: -.707106948
+      objectReference: {fileID: 0}
+    - target: {fileID: 443514, guid: 1844b6388547cf04c9effec312ec48aa, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1844b6388547cf04c9effec312ec48aa, type: 2}
   m_IsPrefabParent: 0
@@ -383,6 +427,10 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 92c18eb55f6780c478008512104597b4, type: 3}
   m_IsPrefabParent: 0
+--- !u!1 &1142368323 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 142224, guid: 1844b6388547cf04c9effec312ec48aa, type: 2}
+  m_PrefabInternal: {fileID: 1060036640}
 --- !u!1 &1223510670
 GameObject:
   m_ObjectHideFlags: 0
