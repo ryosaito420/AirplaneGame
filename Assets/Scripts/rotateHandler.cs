@@ -43,30 +43,15 @@ public class rotateHandler : MonoBehaviour {
 		float v = Input.GetAxisRaw ("Vertical");
 
 		float xRot = transform.eulerAngles.x;
+        if (xRot > 180f) { xRot -= 360f; }
 		float yRot = transform.eulerAngles.y;
 
 		barrelRoll ();
 
-		Debug.Log (xRot);
-
-		if (h > 0 ) {
-
-			if (  xRot > 360-xRotMax){
-
-				transform.Rotate (Vector3.left);
-				//heldTimer++;
-			}
-
-		}else if (h < 0) {
-
-			if(  xRot < xRotMax ){
-				transform.Rotate (Vector3.right);
-				//heldTimer++;
-			}
-		}
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(new Vector3(-h * xRotMax, yRot, 0)), .0625f);
 
 //			normalize the rotation to 0 if no input is detected
-		else {
+		if(h != 0) {
 
 			rotating = false;
 			Vector3 zero = new Vector3(0,yRot,0);
