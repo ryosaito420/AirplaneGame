@@ -325,6 +325,10 @@ Prefab:
       propertyPath: ring
       value: 
       objectReference: {fileID: 1978511225}
+    - target: {fileID: 11437828, guid: 1844b6388547cf04c9effec312ec48aa, type: 2}
+      propertyPath: heldTimer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1844b6388547cf04c9effec312ec48aa, type: 2}
   m_IsPrefabParent: 0

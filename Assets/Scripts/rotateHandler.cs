@@ -43,50 +43,45 @@ public class rotateHandler : MonoBehaviour {
 		float v = Input.GetAxisRaw ("Vertical");
 
 		float xRot = transform.eulerAngles.x;
-		float yRot = transform.rotation.y;
+		float yRot = transform.eulerAngles.y;
 
-		bool rotating = false;
 		barrelRoll ();
 
-		if(!rotating){
-			if (h > 0 && xRot +360 > xRotMax  ) {
-				if(rotating )
-					heldTimer = 0;
+		Debug.Log (xRot);
 
-				Debug.Log(xRot);
+		if (h > 0 ) {
+
+			if (  xRot > 360-xRotMax){
 
 				transform.Rotate (Vector3.left);
-				heldTimer++;
-				rotating = true;
-			}else if (h < 0) {
-
-				if(rotating)
-					heldTimer = 0;
-
-				if(  xRot < xRotMax ){
-					transform.Rotate (Vector3.right);
-					heldTimer++;
-					rotating = true;
-				}
+				//heldTimer++;
 			}
+
+		}else if (h < 0) {
+
+			if(  xRot < xRotMax ){
+				transform.Rotate (Vector3.right);
+				//heldTimer++;
+			}
+		}
 
 //			normalize the rotation to 0 if no input is detected
-			else {
+		else {
 
-				rotating = false;
-				Vector3 zero = new Vector3(0,yRot,0);
-				if( Vector3.Distance(transform.eulerAngles,zero ) > 0.01f ){
-					float angle = Mathf.MoveTowardsAngle(transform.eulerAngles.x, 0.0f, (15 + heldTimer)* Time.deltaTime);
-					transform.eulerAngles = new Vector3(angle, yRot, 0);
-				}
-
-				else{
-					transform.eulerAngles = zero;
-					heldTimer = 0;
-				}
+			rotating = false;
+			Vector3 zero = new Vector3(0,yRot,0);
+			if( Vector3.Distance(transform.eulerAngles,zero ) > 0.01f ){
+				float angle = Mathf.MoveTowardsAngle(transform.eulerAngles.x, 0.0f, (25)* Time.deltaTime);
+				transform.eulerAngles = new Vector3(angle, yRot, 0);
 			}
+
+			else{
+				transform.eulerAngles = zero;
+				heldTimer = 0;
+			}
+		}
 
 
 		}
-	}
+
 }
