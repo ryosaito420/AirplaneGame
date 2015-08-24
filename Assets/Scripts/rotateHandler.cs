@@ -9,6 +9,9 @@ public class rotateHandler : MonoBehaviour {
 	bool rotating = false;
 	public Animation anim;
 
+	public float xRotMax;
+	public float yRotMax;
+
 	public void barrelRoll(){
 		if (Input.GetButtonDown( "Jump") ){
 			if (ButtonCooler > 0 && ButtonCount == 1/*Number of Taps you want Minus One*/) {
@@ -27,7 +30,7 @@ public class rotateHandler : MonoBehaviour {
 			ButtonCount = 0 ;
 		}
 	}
-
+	
 	void Start(){
 	    anim = GetComponent<Animation>();
 	}
@@ -37,33 +40,44 @@ public class rotateHandler : MonoBehaviour {
 
 		//This code will rotate the plane when pushing left or right
 		float h = Input.GetAxisRaw ("Horizontal");
-//		float v = Input.GetAxisRaw ("Vertical");
-//		float j = Input.GetAxisRaw ("Jump");
+		float v = Input.GetAxisRaw ("Vertical");
+
+		float xRot = transform.eulerAngles.x;
+		float yRot = transform.rotation.y;
+
 		bool rotating = false;
 		barrelRoll ();
 
 		if(!rotating){
-			if (h > 0) {
-				if(rotating)
+			if (h > 0 && xRot +360 > xRotMax  ) {
+				if(rotating )
 					heldTimer = 0;
+
+				Debug.Log(xRot);
+
 				transform.Rotate (Vector3.left);
 				heldTimer++;
 				rotating = true;
-			} else if (h < 0) {
+			}else if (h < 0) {
+
 				if(rotating)
 					heldTimer = 0;
-				transform.Rotate (Vector3.right);
-				heldTimer++;
-				rotating = true;
+
+				if(  xRot < xRotMax ){
+					transform.Rotate (Vector3.right);
+					heldTimer++;
+					rotating = true;
+				}
 			}
-			//normalize the rotation to 0 if no input is detected
+
+//			normalize the rotation to 0 if no input is detected
 			else {
 
 				rotating = false;
-				Vector3 zero = new Vector3(0,0,0);
+				Vector3 zero = new Vector3(0,yRot,0);
 				if( Vector3.Distance(transform.eulerAngles,zero ) > 0.01f ){
 					float angle = Mathf.MoveTowardsAngle(transform.eulerAngles.x, 0.0f, (15 + heldTimer)* Time.deltaTime);
-					transform.eulerAngles = new Vector3(angle, 0, 0);
+					transform.eulerAngles = new Vector3(angle, yRot, 0);
 				}
 
 				else{
@@ -72,21 +86,7 @@ public class rotateHandler : MonoBehaviour {
 				}
 			}
 
-			
+
 		}
-		
-		//		if (v > 0) {
-//			transform.Rotate (Vector3.forward);
-//		} if (v < 0) {
-//			transform.Rotate (Vector3.back);
-//		}
-//		else {
-//			float angle = Mathf.MoveTowardsAngle(transform.eulerAngles.y, 0.0f, 15* Time.deltaTime);
-//			transform.eulerAngles = new Vector3(0, angle, 0);
-//		}
-
-
-
-
 	}
 }

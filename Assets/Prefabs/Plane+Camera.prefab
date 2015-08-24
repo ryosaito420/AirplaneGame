@@ -495,7 +495,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ringDistance: 50
-  ring: {fileID: 179810, guid: 83d77045c2617ea40ace38f7b5ea9027, type: 2}
+  ring: {fileID: 0}
   yBound: 10
   zBound: 20
 --- !u!114 &11437484
@@ -522,6 +522,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heldTimer: 0
   anim: {fileID: 0}
+  xRotMax: 50
+  yRotMax: 0
 --- !u!114 &11445052
 MonoBehaviour:
   m_ObjectHideFlags: 1
