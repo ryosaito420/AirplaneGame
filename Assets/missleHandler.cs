@@ -16,8 +16,11 @@ public class missleHandler : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		//Increase distance, or decrease speed?
 		dist = player.transform.position - transform.position;
+		//Debug.Log (dist.x);
 		dist = dist.normalized;
+
 		GetComponent<Rigidbody> ().AddForce (dist * speed);
 	}
 }

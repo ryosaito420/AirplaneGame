@@ -12,12 +12,13 @@ public class rotateHandler : MonoBehaviour {
 	public float xRotMax;
 	public float yRotMax;
 
-	public void barrelRoll(){
+	public void barrelRoll(Vector3 savedAngle ){
 		if (Input.GetButtonDown( "Jump") ){
 			if (ButtonCooler > 0 && ButtonCount == 1/*Number of Taps you want Minus One*/) {
 				anim.Play("roll");
-
-			} else {
+				transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(savedAngle) ,  .0625f);
+             }
+			 else {
 				ButtonCooler = 0.5; 
 				ButtonCount += 1;
 			}
@@ -41,19 +42,17 @@ public class rotateHandler : MonoBehaviour {
 		//This code will rotate the plane when pushing left or right
 		float h = Input.GetAxisRaw ("Horizontal");
 		float v = Input.GetAxisRaw ("Vertical");
+		Vector3 savedAngle = transform.eulerAngles;
 
 		float xRot = transform.eulerAngles.x;
         if (xRot > 180f) { xRot -= 360f; }
 		float yRot = transform.eulerAngles.y;
 
-		barrelRoll ();
-
+		barrelRoll (savedAngle);
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(new Vector3(-h * xRotMax, yRot, 0)), .0625f);
 
-//			normalize the rotation to 0 if no input is detected
+		//normalize the rotation to 0 if no input is detected
 		if(h != 0) {
-
-			rotating = false;
 			Vector3 zero = new Vector3(0,yRot,0);
 			if( Vector3.Distance(transform.eulerAngles,zero ) > 0.01f ){
 				float angle = Mathf.MoveTowardsAngle(transform.eulerAngles.x, 0.0f, (25)* Time.deltaTime);
@@ -62,11 +61,8 @@ public class rotateHandler : MonoBehaviour {
 
 			else{
 				transform.eulerAngles = zero;
-				heldTimer = 0;
 			}
 		}
-
-
-		}
+	}
 
 }
