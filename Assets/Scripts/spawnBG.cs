@@ -23,7 +23,7 @@ public class spawnBG : MonoBehaviour {
 		if( spawnNew){
 		    Debug.Log("Spawn New tile");
 			//float tileDist = tileHeight - 
-			Instantiate (bg, new Vector3 (transform.position.x, transform.position.y + tileHeight -10 , transform.position.z), Quaternion.identity);
+			Instantiate (bg, new Vector3 (transform.position.x, dissapearDist+ 2*tileHeight -1 , transform.position.z), Quaternion.identity);
 			spawnNew = false;
 			dissapearDist = 0;
 		}

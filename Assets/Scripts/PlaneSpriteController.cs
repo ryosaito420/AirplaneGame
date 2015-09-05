@@ -5,42 +5,32 @@ public class PlaneSpriteController : MonoBehaviour {
 	public float maxHorizontalSpeed;
 	public float maxVerticalSpeed;
 
-	private float xBound = 20f; //horizontal bound of plane
-	private float yBound = 20f;
+	private float xBound = 4f; //horizontal bound of plane
+	private float zBound = 20f;
 	private float verticalSpeed = 0; //Move plane up & down speed
 	private float horizontalSpeed = 0; // Move plane left & right speed
-
 	private Rigidbody2D plane;
 
-	void Awake() {
-		Application.targetFrameRate = 300;
-	}
-
 	void HorizontalInputHandler(float a){
-		if (a > 0 && transform.localPosition.x < xBound) {
+		if (a > 0 && transform.localPosition.z < zBound) {
 			horizontalSpeed = maxHorizontalSpeed;
-			//transform.Rotate(Vector3.right * Time.deltaTime * -horizontalRotateSpeed);
 		}
-		else if (a < 0 && transform.localPosition.x > -xBound )
+		else if (a < 0 && transform.localPosition.z > -zBound )
 			horizontalSpeed = -maxHorizontalSpeed;
 		else
 			horizontalSpeed = 0;
 	}
-
 	
 	void VerticalInputHandler(float b){
-		if (b > 0 && transform.position.y < yBound) {
+		if (b > 0 && transform.localPosition.x < xBound) {
 			verticalSpeed = maxVerticalSpeed;
 			Debug.Log("vertical input");
-			//transform.Rotate(Vector3.right * Time.deltaTime * -horizontalRotateSpeed);
 		}
-		else if (b < 0 && transform.position.y > -yBound )
+		else if (b < 0 && transform.localPosition.x > -xBound )
 			verticalSpeed = -maxVerticalSpeed;
 		else
 			verticalSpeed = 0;
 	}
-
-
 	// Use this for initialization
 	void Start () {
 		plane = GetComponent<Rigidbody2D>();
