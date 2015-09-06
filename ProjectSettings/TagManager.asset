@@ -46,3 +46,6 @@ TagManager:
   - name: planes
     uniqueID: 917889091
     locked: 0
+  - name: bullets
+    uniqueID: 2554238637
+    locked: 0
