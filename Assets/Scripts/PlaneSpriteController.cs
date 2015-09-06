@@ -24,7 +24,6 @@ public class PlaneSpriteController : MonoBehaviour {
 	void VerticalInputHandler(float b){
 		if (b > 0 && transform.localPosition.x < xBound) {
 			verticalSpeed = maxVerticalSpeed;
-			Debug.Log("vertical input");
 		}
 		else if (b < 0 && transform.localPosition.x > -xBound )
 			verticalSpeed = -maxVerticalSpeed;

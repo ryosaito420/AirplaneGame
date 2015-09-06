@@ -41,7 +41,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 100256, guid: b7e5df4c829621345a86108a21ec6f52, type: 2}
   bulletSpeed: 40
-  fireCD: 10
+  fireCD: 20
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

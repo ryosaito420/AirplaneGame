@@ -17,7 +17,7 @@ public class scrollBG : MonoBehaviour {
 		spawnBG.spawnNew = true;
 		spawnBG.dissapearDist = transform.position.y;
 
-		Debug.Log(spawnBG.dissapearDist);
+		//Debug.Log(spawnBG.dissapearDist);
 		Destroy (this.gameObject);
 	}
 	

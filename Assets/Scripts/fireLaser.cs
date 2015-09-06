@@ -25,6 +25,5 @@ public class fireLaser : MonoBehaviour {
 			//new_bullet.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 20f);
 		} else
 			timer--;
-		Debug.Log (timer);
 	}
 }
