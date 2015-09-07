@@ -16,7 +16,9 @@ public class destoryBullet : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D collision) {
-		Debug.Log ("Bullet hit something!");
-		Destroy (this.gameObject);
+
+		if (collision.gameObject.tag == "enemy") {
+			Destroy (this.gameObject);
+		}
 	}
 }

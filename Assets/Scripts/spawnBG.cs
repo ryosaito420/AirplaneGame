@@ -21,7 +21,6 @@ public class spawnBG : MonoBehaviour {
 	void Update () {
 		//Debug.Log (bg.GetComponent<scrollBG> ().dissapeared);
 		if( spawnNew){
-		    Debug.Log("Spawn New tile");
 			Instantiate (bg, new Vector3 (transform.position.x, dissapearDist+ 2*tileHeight -1 , transform.position.z), Quaternion.identity);
 			spawnNew = false;
 			dissapearDist = 0;
