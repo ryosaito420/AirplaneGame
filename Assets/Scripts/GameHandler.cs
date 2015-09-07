@@ -12,8 +12,14 @@ public class GameHandler : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+//		if (Input.GetKey ("q"))
+//			Debug.Log ("quit");
+//			Application.Quit();
+//		
+//	}
 
 		//Debug.Log (gameScore);
 	
-	}
+}
+
 }

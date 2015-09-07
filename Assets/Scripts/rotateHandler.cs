@@ -6,7 +6,6 @@ public class rotateHandler : MonoBehaviour {
 	public float heldTimer = 0;
 	double ButtonCooler =0.5;
 	int ButtonCount = 0;
-	bool rotating = false;
 	public Animation anim;
 
 	public float xRotMax;
@@ -41,7 +40,7 @@ public class rotateHandler : MonoBehaviour {
 
 		//This code will rotate the plane when pushing left or right
 		float h = Input.GetAxisRaw ("Horizontal");
-		float v = Input.GetAxisRaw ("Vertical");
+		//float v = Input.GetAxisRaw ("Vertical");
 		Vector3 savedAngle = transform.eulerAngles;
 
 		float xRot = transform.eulerAngles.x;

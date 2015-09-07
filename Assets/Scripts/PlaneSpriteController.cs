@@ -11,7 +11,7 @@ public class PlaneSpriteController : MonoBehaviour {
 	private float verticalSpeed = 0; //Move plane up & down speed
 	private float horizontalSpeed = 0; // Move plane left & right speed
 
-	private BoxCollider2D collider;
+	private BoxCollider2D col;
 	private Rigidbody2D plane;
 
 	//Gets world Coordiantes of screen bounds and sets xbound and ybound for plane boundaries;
@@ -42,7 +42,7 @@ public class PlaneSpriteController : MonoBehaviour {
 	//Need to clamp input of plane to prevent it going offscreen
 	void clampInput(float trimDist){
 		//Get size of plane's collider rectangle
-		Vector2 planeSize = collider.size;
+		Vector2 planeSize = col.size;
 		
 		// Need to clamp xCoordiantes and zCoordiantes to screen boundary
 		Vector3 clampedPosition = transform.position; 
@@ -55,7 +55,7 @@ public class PlaneSpriteController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		plane = GetComponent<Rigidbody2D>();
-		collider = GetComponent<BoxCollider2D> ();
+		col = GetComponent<BoxCollider2D> ();
 		getScreenBounds ();
 	}
 	
