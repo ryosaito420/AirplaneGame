@@ -29,6 +29,9 @@ public class mouseLineDraw : MonoBehaviour {
 
 			line.SetPosition (0, mousePos); // line starts at mouse down
 			startPoint = mousePos; 
+			endPoint = startPoint;
+			line.SetPosition (1, mousePos);
+
 		}
 
 		// on letting go of leftclick
@@ -36,12 +39,12 @@ public class mouseLineDraw : MonoBehaviour {
 
 			//if line exists
 			if (line) {
-//				mousePos = Camera.main.ScreenToWorldPoint (Input.mousePosition); //covert mouselocation to unity world location
-//				mousePos.z = 0; //2d game so z is irrelevant
-//				line.SetPosition (1, mousePos); // line ends at mouse up
-//				endPoint = mousePos;
-//				addCollision (); 
-				Destroy(line.gameObject);
+				mousePos = Camera.main.ScreenToWorldPoint (Input.mousePosition); //covert mouselocation to unity world location
+				mousePos.z = 0; //2d game so z is irrelevant
+				line.SetPosition (1, mousePos); // line ends at mouse up
+				endPoint = mousePos;
+				addCollision (); 
+				//Destroy(line.gameObject);
 				line = null;
 
 			}
@@ -52,7 +55,7 @@ public class mouseLineDraw : MonoBehaviour {
 				mousePos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 				mousePos.z = 0;
 				//remove collider and create new collider if mouse moved 
-				Debug.Log("MousePos = " + mousePos + " Endpoint = "+ endPoint); 
+				//Debug.Log("MousePos = " + mousePos + " Endpoint = "+ endPoint); 
 
 				if( mousePos != endPoint){
 					Destroy(colliderbox);
@@ -80,7 +83,10 @@ public class mouseLineDraw : MonoBehaviour {
 
 		GameObject col = new GameObject("Collider");
 		BoxCollider2D lineCollider = col.AddComponent<BoxCollider2D> ();
+		col.AddComponent<lineColliderTrigger> ();
+		lineCollider.isTrigger = true;
 		lineCollider.transform.parent = line.transform; //line is parent of boxcollider
+
 		float lineLength = Vector3.Distance(startPoint, endPoint);
 		lineCollider.size = new Vector3(lineLength, .1f, .1f); // x, y, z
 		Vector3 midPoint = (startPoint + endPoint) / 2;
