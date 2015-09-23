@@ -5,12 +5,15 @@ public class mouseLineDraw : MonoBehaviour {
 
 	private LineRenderer line;	//line Renderer refrence
 	private Vector3 mousePos; 
+	private Vector3 mousePosPrev; //mouse pos from previous frame
 	private Vector3 startPoint; //start Postion of line
 	private Vector3 endPoint; 	// end position of line
+	private GameObject colliderbox;
 
 	// Use this for initialization
 	void Start () {
-	
+		mousePos = new Vector3 (0, 0, 0);
+		mousePosPrev = mousePos;
 	}
 	
 	// Update is called once per frame
@@ -48,10 +51,15 @@ public class mouseLineDraw : MonoBehaviour {
 			if (line) {
 				mousePos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 				mousePos.z = 0;
-				endPoint = mousePos;
-				line.SetPosition (1, mousePos);
-				addCollision (); 
+				//remove collider and create new collider if mouse moved 
+				Debug.Log("MousePos = " + mousePos + " Endpoint = "+ endPoint); 
 
+				if( mousePos != endPoint){
+					Destroy(colliderbox);
+					line.SetPosition (1, mousePos);
+					endPoint = mousePos;
+					colliderbox = addCollision();
+				}
 			}
 		}
 	
@@ -68,9 +76,10 @@ public class mouseLineDraw : MonoBehaviour {
 	}
 
 	// add a collider to line Gameobject dynamically
-	void addCollision(){
+	GameObject addCollision(){
 
-		BoxCollider2D lineCollider = new GameObject ("Collider").AddComponent<BoxCollider2D> ();
+		GameObject col = new GameObject("Collider");
+		BoxCollider2D lineCollider = col.AddComponent<BoxCollider2D> ();
 		lineCollider.transform.parent = line.transform; //line is parent of boxcollider
 		float lineLength = Vector3.Distance(startPoint, endPoint);
 		lineCollider.size = new Vector3(lineLength, .1f, .1f); // x, y, z
@@ -84,6 +93,7 @@ public class mouseLineDraw : MonoBehaviour {
 		}
 		angle = Mathf.Rad2Deg * Mathf.Atan (angle);
 		lineCollider.transform.Rotate (0, 0, angle);
+		return col;
 	}
 
 
