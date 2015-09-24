@@ -17,7 +17,6 @@ public class lineColliderTrigger : MonoBehaviour {
 
 		if (col.tag == "enemy") {
 			Debug.Log ("Enemy found!");
-
 		}
 
 	}
