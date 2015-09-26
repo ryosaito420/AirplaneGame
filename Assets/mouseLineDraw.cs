@@ -13,11 +13,7 @@ public class mouseLineDraw : MonoBehaviour {
 	GameObject col;
 	BoxCollider2D lineCollider;
 	// Use this for initialization
-	void Start () {
-		mousePos = new Vector3 (0, 0, 0);
-		mousePosPrev = mousePos;
-	}
-	
+
 	// Update is called once per frame
 	void Update () {
 
@@ -46,8 +42,8 @@ public class mouseLineDraw : MonoBehaviour {
 				mousePos.z = 0; //2d game so z is irrelevant
 				line.SetPosition (1, mousePos); // line ends at mouse up
 				endPoint = mousePos;
-				//addCollision (); 
 				Destroy(line.gameObject);
+				lockOnSystem.enemyTargets.Clear();
 				line = null;
 
 			}
@@ -101,15 +97,7 @@ public class mouseLineDraw : MonoBehaviour {
 		angle = Mathf.Rad2Deg * Mathf.Atan (angle);
 		lineCollider.transform.rotation = Quaternion.Euler(0,0,angle);
 		//Debug.Log (lineCollider.transform.rotation);
-
 		return col;
 	}
-
-
-
-
-
-
-
 
 }

@@ -5,23 +5,24 @@ using System.Collections.Generic;
 
 public class enemyHandlerBasic : MonoBehaviour {
 
-	public GameObject lockOn;
-
+	public GameObject targetBox;
+	public static bool targeted;
 	// Use this for initialization
 	void Start () {
-	
+		targeted = false;
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
-	}
+	void Update () {	
 
-	void OnMouseDown() {
-		Debug.Log ("Locked on!");
-		lockOnSystem.enemyTargets.Add (this.gameObject);
-		Debug.Log (lockOnSystem.enemyTargets.Count);
-	}
+		if (targeted) {
 
+		}
+
+	
+	}
 
 }
+
+
+

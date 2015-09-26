@@ -3,22 +3,30 @@ using System.Collections;
 
 public class lineColliderTrigger : MonoBehaviour {
 
+	private Animation lockOnBox;
 	// Use this for initialization
-	void Start () {
-	
-	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		//Debug.Log ("Line is created!");
 	}
 
 	void OnTriggerEnter2D(Collider2D col) {
-
 		if (col.tag == "enemy") {
-			Debug.Log ("Enemy found!");
-		}
+			lockOnSystem.enemyTargets.Add(col.gameObject);
+			lockOnBox = col.gameObject.GetComponentInChildren<Animation>();
+			//lockOnBox.Play();
+			Debug.Log(lockOnSystem.enemyTargets.Count);
 
+			
+		
+		}
+	}
+
+	void OnTriggerExit2D(Collider2D col) {
+		if (col.tag == "enemy") {
+			Debug.Log ("Enemy lost!");
+			lockOnSystem.enemyTargets.Remove(col.gameObject);
+		}
 	}
 
 
