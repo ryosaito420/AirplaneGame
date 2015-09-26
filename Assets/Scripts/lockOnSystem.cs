@@ -8,6 +8,7 @@ public class lockOnSystem : MonoBehaviour {
 	public static List <GameObject> enemyTargets ;
 
 	private LineRenderer line;	//line Renderer refrence
+	private GameObject lineObj;
 	private Vector3 mousePos; 
 	private Vector3 mousePosPrev; //mouse pos from previous frame
 	private Vector3 startPoint; //start Postion of line
@@ -46,11 +47,17 @@ public class lockOnSystem : MonoBehaviour {
 			
 			//if line exists
 			if (line) {
+				//Fix line one last frame before destorying
 				mousePos = Camera.main.ScreenToWorldPoint (Input.mousePosition); //covert mouselocation to unity world location
 				mousePos.z = 0; //2d game so z is irrelevant
 				line.SetPosition (1, mousePos); // line ends at mouse up
 				endPoint = mousePos;
 				Destroy (line.gameObject);
+
+				//remove all targetBoxes from enemy ships
+				disableBox.boxOn = false;
+
+				//fire then remove all targets from list
 				lockOnSystem.enemyTargets.Clear ();
 				line = null;
 			}
@@ -74,12 +81,16 @@ public class lockOnSystem : MonoBehaviour {
 	//Creates a new red line gameobject to hold the line render in runtime
 	void createLine(){
 		//create line drawing
-		line = new GameObject ("Line").AddComponent<LineRenderer> ();
-		line.material = new Material (Shader.Find ("Diffuse"));
+		lineObj = new GameObject ("Line");
+		//SpriteRenderer spriteRenderer = lineObj.AddComponent<SpriteRenderer> ();
+		line = lineObj.AddComponent<LineRenderer> ();
+		Material whiteDiffuseMat = new Material(Shader.Find("Unlit/Texture"));
+		line.material = whiteDiffuseMat;
 		line.SetVertexCount (2);
 		line.SetWidth (.2f, .2f);
-		line.SetColors (Color.green, Color.green);
+		line.material.color = Color.red;
 		line.useWorldSpace = true;
+
 		
 		// create collider
 		col = new GameObject("Collider");

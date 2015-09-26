@@ -3,31 +3,27 @@ using System.Collections;
 
 public class lineColliderTrigger : MonoBehaviour {
 
-	private Animation lockOnBox;
-	// Use this for initialization
+	private SpriteRenderer renderBox;
+	private Transform targetBox;
 
-	// Update is called once per frame
 	void Update () {
 	}
 
 	void OnTriggerEnter2D(Collider2D col) {
 		if (col.tag == "enemy") {
 			lockOnSystem.enemyTargets.Add(col.gameObject);
-			lockOnBox = col.gameObject.GetComponentInChildren<Animation>();
-			//lockOnBox.Play();
-			Debug.Log(lockOnSystem.enemyTargets.Count);
-
-			
-		
+			targetBox = col.transform.GetChild(0);
+			renderBox =  targetBox.GetComponent<SpriteRenderer>();
+			disableBox.boxOn = true;
+			Animation lockOnBox = targetBox.GetComponent<Animation>();
+			renderBox.enabled = true;
+			lockOnBox.Play ();
 		}
 	}
 
-	void OnTriggerExit2D(Collider2D col) {
-		if (col.tag == "enemy") {
-			Debug.Log ("Enemy lost!");
-			lockOnSystem.enemyTargets.Remove(col.gameObject);
-		}
+	void OnTriggerStay2D(Collider2D col) {
+		renderBox.enabled = true;
+		disableBox.boxOn = true;
 	}
-
 
 }
