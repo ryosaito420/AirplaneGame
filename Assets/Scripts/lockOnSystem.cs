@@ -7,6 +7,8 @@ public class lockOnSystem : MonoBehaviour {
 
 	public static List <GameObject> enemyTargets ;
 
+	public GameObject missle;
+	
 	private LineRenderer line;	//line Renderer refrence
 	private GameObject lineObj;
 	private Vector3 mousePos; 
@@ -58,6 +60,10 @@ public class lockOnSystem : MonoBehaviour {
 				disableBox.boxOn = false;
 
 				//fire then remove all targets from list
+				for( int i =0; i< lockOnSystem.enemyTargets.Count; ++i)
+					fireMissle();
+
+
 				lockOnSystem.enemyTargets.Clear ();
 				line = null;
 			}
@@ -76,6 +82,12 @@ public class lockOnSystem : MonoBehaviour {
 				colliderbox = addCollision ();
 			}
 		}
+	}
+
+	void fireMissle(){
+		//Instantiate a new missle
+		GameObject new_missle = Instantiate (missle, new Vector3 (transform.position.x, transform.position.y), missle.transform.localRotation) as GameObject;
+		//wait for ?? seconds
 	}
 	
 	//Creates a new red line gameobject to hold the line render in runtime
